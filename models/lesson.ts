@@ -1,6 +1,7 @@
 import {
   Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany, JoinTable, ManyToOne,
 } from 'typeorm';
+import { IsDefined } from 'class-validator';
 import File from './file';
 import Link from './link';
 import Course from './course';
@@ -10,10 +11,12 @@ export default class Lesson {
     @PrimaryGeneratedColumn()
       id: number;
 
-    @Column()
+    @Column({ nullable: false })
+    @IsDefined()
       title: string;
 
-    @Column()
+    @Column({ nullable: false })
+    @IsDefined()
       description: string;
 
     @OneToOne(() => File)

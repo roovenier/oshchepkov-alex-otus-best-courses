@@ -1,6 +1,7 @@
 import {
   Entity, PrimaryGeneratedColumn, Column, OneToMany,
 } from 'typeorm';
+import { IsDefined } from 'class-validator';
 import Lesson from './lesson';
 
 @Entity()
@@ -8,10 +9,12 @@ export default class Course {
     @PrimaryGeneratedColumn()
       id: number;
 
-    @Column()
+    @Column({ nullable: false })
+    @IsDefined()
       title: string;
 
-    @Column()
+    @Column({ nullable: false })
+    @IsDefined()
       description: string;
 
     @OneToMany(() => Lesson, (lesson) => lesson.course)

@@ -1,6 +1,7 @@
 import {
   Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany,
 } from 'typeorm';
+import { IsDefined } from 'class-validator';
 import Role from './role';
 import Comment from './comment';
 
@@ -9,7 +10,8 @@ export default class User {
     @PrimaryGeneratedColumn()
       id: number;
 
-    @Column()
+    @Column({ nullable: false })
+    @IsDefined()
       name: string;
 
     @OneToOne(() => Role)
